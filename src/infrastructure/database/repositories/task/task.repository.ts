@@ -9,7 +9,7 @@ export class TaskRepository implements ITaskRepository {
   async getTasks(req : object): Promise<TaskRaw[]> {
     type getTaskParams = { orderBy?: any; take?: number; skip?: number }
     let param: getTaskParams = {}
-    if ( req !== undefined && req !== null && req !== {} ) {
+    if ( req !== undefined && req !== null ) {
       if (Number(req.sorted)) param.orderBy = { priorite: 'asc' }
       if (Number(req.page) > 0) {
         param.take = 10

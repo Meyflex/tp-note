@@ -14,4 +14,10 @@ model Task {
   title String
   description String? 
   priorite Int
+  Tag Tag[]
+}
+model Tag {
+  id String @id @default(uuid())
+  title String
+  Task Task[]
 }
