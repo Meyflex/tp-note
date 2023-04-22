@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "680da716-cef5-4479-8e48-0391b9e07c0d",
+		"name": "TestTagandTasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tag",
+			"item": [
+				{
+					"name": "http://localhost:3002/api/Tag",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"vegies\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/Tag",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"Tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/Tag",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \n        \"title\": \"Buy gropoooo\",\n        \"description\": \"Buy milk, bread, and eggs from the supermarket\",\n        \"priorite\": 0,\n        \"tags\": [{\n            \"id\" : \"dfbb88f7-3af3-4ee3-84cc-083a20aaeeec\"\n\n        }]\n    }\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/Tag",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"Tag"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "http://localhost:3002/api/Task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Buy groceries\",\n  \"description\": \"Buy milk, bread, and eggs from the supermarket\",\n  \"priorite\": 1,\n  \"tags\": [\n    {\n      \"id\": \"23b73d1e-d852-42af-8587-e3cbca1bbeef\"\n    }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/Task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"Task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/task?sorted=1&page=1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"sami\",\n    \"description\": \"sami\",\n    \"priorite\": 1\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/task?sorted=1&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "sorted",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/task/5eecac15-a503-4e05-a01b-4e01939bdfe4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"hello\",\n    \"description\": \"world\",\n    \"priorite\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/task/5eecac15-a503-4e05-a01b-4e01939bdfe4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"task",
+								"5eecac15-a503-4e05-a01b-4e01939bdfe4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/task/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"hello\",\n    \"description\": \"world\",\n    \"priorite\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/task/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"task",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/task/d0abb468-195b-44e4-b0c1-76fbe38b056c",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"potato\",\n    \"description\": \"patata\",\n    \"priorite\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/task/d0abb468-195b-44e4-b0c1-76fbe38b056c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"task",
+								"d0abb468-195b-44e4-b0c1-76fbe38b056c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/api/task/d0abb468-195b-44e4-b0c1-76fbe38b056c",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"potato\",\n    \"description\": \"patata\",\n    \"priorite\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/api/task/d0abb468-195b-44e4-b0c1-76fbe38b056c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"task",
+								"d0abb468-195b-44e4-b0c1-76fbe38b056c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
