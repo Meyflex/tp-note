@@ -12,5 +12,6 @@ export function toTaskRaw(task: Task): TaskRaw {
     title: task.title,
     description: task.description,
     priorite: task.priorite,
+    tags: task.tags,
   }
 }
