@@ -7,7 +7,7 @@ export class TaskRepository implements ITaskRepository {
   constructor(private readonly database: RelationalDatabase) { }
 
   async getTasks(req : object): Promise<TaskRaw[]> {
-    type getTaskParams = { orderBy?: any; take?: number; skip?: number }
+    type getTaskParams = { orderBy?: any; take?: number; skip?: number  }
     let param: getTaskParams = {}
     if ( req !== undefined && req !== null ) {
       if (Number(req.sorted)) param.orderBy = { priorite: 'asc' }
@@ -16,7 +16,7 @@ export class TaskRepository implements ITaskRepository {
         param.skip = (Number(req.page) - 1) * 10
     }}
     
-    const tasks = await this.database.client.task.findMany(param)
+    const tasks = await this.database.client.task.findMany({...param, include: { tags: true }})
     return tasks.map(toTaskRaw)
 }
 async createTask(task: TaskRaw): Promise<TaskRaw> {
@@ -80,7 +80,7 @@ async createTask(task: TaskRaw): Promise<TaskRaw> {
     if (!deletedTask) {
       throw new Error('Task not found')
     }
-    return await this.getTasks()
+    return await this.getTasks({})
   }
 
 }
