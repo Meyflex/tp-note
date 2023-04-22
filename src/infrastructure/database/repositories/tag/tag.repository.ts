@@ -18,7 +18,9 @@ export class TagRepository implements ITagRepository {
 
     async addTag(tag: TagRaw): Promise<TagRaw> {
     const tagRaw = await this.database.client.tag.create({
-      data: tag,
+      data: {
+        title: tag.title,
+      },
       include: {
         tasks: true
       }

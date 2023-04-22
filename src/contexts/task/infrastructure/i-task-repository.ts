@@ -5,7 +5,7 @@ export type TaskUpdateRaw = TaskUpdate
 
 
 export interface ITaskRepository {
-  getTasks(req : object): Promise<Task[]>;
+  getTasks(req : any): Promise<Task[]>;
   createTask(task : Task ): Promise<Task>;
   getTaskById(id: string): Promise<Task>;
   updateTask(id: string, task: TaskUpdate): Promise<Task>;

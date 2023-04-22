@@ -3,15 +3,17 @@
 // export function toBookRaw(book: Task): TaskRaw {
 
 import { TaskRaw } from "../../../../contexts/task";
-import { Task } from "../../../../contexts/task/domains";
+import { Task,Tag } from "@prisma/client";
+
 
 // TODO: use real types
-export function toTaskRaw(task: Task): TaskRaw {
+export function toTaskRaw(task: any): any {
   return {
     id: task.id,
     title: task.title,
-    description: task.description,
+    description: task.description || "", // handle null case
     priorite: task.priorite,
     tags: task.tags,
+
   }
 }

@@ -61,12 +61,12 @@ async getTaskById(req: Request, res: Response) {
 async updateTask(req: Request, res: Response) {
   const validatorResult: ValidatorResult = validate(req.body, taskCreateSchema)
   if (validatorResult.valid) {
-    try { 
+    // try { 
       const task = await this.PutTasksUseCase.execute(req.params.id,req.body )
       res.status(201).json(task)
-     } catch (error) {
-      res.status(500).json(error)
-     }
+    //  } catch (error) {
+    //   res.status(500).json(error)
+    //  }
   } else {
     res.status(400).json(validatorResult.errors)
   }

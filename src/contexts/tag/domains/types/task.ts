@@ -3,7 +3,7 @@ export type Task = {
     id: string
     title: string
     description: string
-    priorite: string
+    priorite: number
     tags: Tag[]
   }
 export type TaskCreate = Omit<Task, 'id'>

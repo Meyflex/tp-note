@@ -2,12 +2,14 @@ import { ITaskRepository } from '../../../../contexts/task'
 import { RelationalDatabase } from '../../database'
 import { TaskRaw } from '../../../../contexts/task'
 import { toTaskRaw } from './task.mapper'
+import { Request } from 'express-serve-static-core'
 
 export class TaskRepository implements ITaskRepository {
   constructor(private readonly database: RelationalDatabase) { }
 
-  async getTasks(req : object): Promise<TaskRaw[]> {
+  async getTasks(req : any): Promise<TaskRaw[]> {
     type getTaskParams = { orderBy?: any; take?: number; skip?: number  }
+
     let param: getTaskParams = {}
     if ( req !== undefined && req !== null ) {
       if (Number(req.sorted)) param.orderBy = { priorite: 'asc' }
@@ -17,6 +19,7 @@ export class TaskRepository implements ITaskRepository {
     }}
     
     const tasks = await this.database.client.task.findMany({...param, include: { tags: true }})
+   
     return tasks.map(toTaskRaw)
 }
 async createTask(task: TaskRaw): Promise<TaskRaw> {
@@ -51,12 +54,13 @@ async createTask(task: TaskRaw): Promise<TaskRaw> {
     return toTaskRaw(task)
   }
   async updateTask(id: string, task: TaskRaw): Promise<TaskRaw> {
+    const tags = task.tags || [];
     const updatedTask = await this.database.client.task.update({
       where: { id },
       data: {
         ...task,
         tags: {
-          connect: task.tags.map((tag) => ({ id: tag.id }))
+          connect: tags.map((tag) => ({ id: tag.id }))
         }
       },
       include: {

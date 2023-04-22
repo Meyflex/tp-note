@@ -2,11 +2,11 @@ openapi: 3.0.0
 # Added by API Auto Mocking Plugin
 servers:
   - description: localhost
-    url: http://localhost:3000/api/v1
+    url: http://localhost:3002/api
 info:
-  description: Cloud TP1
+  description: Cloud TP Note
   version: '1.0.0'
-  title: Cloud TP1
+  title: Cloud TP Note
   contact:
     email: nocompany@gmail.com
   license:
@@ -15,14 +15,50 @@ info:
 tags:
   - name: books
     description: API pour mes bouquins
+
+components:
+  schemas:
+    Task:
+      type: object
+      required:
+        - id
+        - title
+        - priorite
+      properties:
+        id:
+          type: string
+          format: id
+          example: dfbb88f7-3af3-4ee3-84cc-083a20aaeeec
+        title:
+          type: string
+          example: Lord of the ring
+        description:
+          type: string
+          example: Somebody lost his rings
+        priorite:
+          type: integer
+          example: 1
+    Tag:
+      type: object
+      required:
+        - id
+        - title
+        - priorite
+      properties:
+        id:
+          type: string
+          format: id
+          example: dfbb88f7-3af3-4ee3-84cc-083a20aaeeec
+        title:
+          type: string
+          example: Lord of the ring
+
+
 paths:
-  /inventory:
+  /Task:
     get:
-      tags:
-        - books
-      summary: récupère tous les livres
       operationId: searchAll
-      description: récupère tous les livres
+      description: récupère tous les tasks
       responses:
         '200':
           description: OK
@@ -31,33 +67,108 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Book'
-components:
-  schemas:
-    Book:
-      type: object
-      required:
-        - id
-        - title
-        - description
-        - createdAt
-        - updatedAt
-      properties:
-        id:
-          type: string
-          format: id
-          example: 42
-        title:
-          type: string
-          example: Lord of the ring
-        description:
-          type: string
-          example: Somebody lost his rings
-        createdAt:
-          type: string
-          format: date-time
-          example: '2016-08-29T09:12:33.001Z'
-        updatedAt:
-          type: string
-          format: date-time
-          example: '2016-08-29T09:12:33.001Z'
+                  $ref: '#/components/schemas/Task'
+    post:
+      operationId: create
+      description: créer un task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /Task/{id}:
+    get:
+      operationId: searchById
+      description: récupère un task par son id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    patch:
+      operationId: update
+      description: met à jour un task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    delete:
+      operationId: delete
+      description: supprime un task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /Tag:
+    get:
+      operationId: searchAll
+      description: récupère tous les tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+    post:
+      operationId: create
+      description: créer un tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+
+        
+ 
+
